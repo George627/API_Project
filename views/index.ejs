@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Onest&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Api</title>
+</head>
+
+<body class="indie-flower-regular"> 
+
+  <% if(locals.races){ %>
+   
+    <div class="card card-border mt-5 mb-3 mx-auto" style="width: 550px;">
+      
+      <div class="card-header text-center">Stat Card</div>
+  
+        <div class="card-body">
+          
+          <h5 class="card-title text-center">Race: <%= races.name %></h5>
+        
+          <div class="row">
+        
+            <div class="col-5" for="age">Life Expectancy:</label></p>
+              
+            <textarea style="height: 300px;" id="age" name="age" disabled><%= races.age %></textarea>
+    
+            </div>
+            
+            <div class="col-2" for="stats">Stats:</label></p>
+              
+              <ul>
+                
+                <% races.ability_bonuses.forEach(stat => { %>
+
+                  <li><%= stat.ability_score.name %>: <%= stat.bonus %></li> 
+              
+                <% }) %>                     
+        
+            </ul>
+              
+            </div>
+          
+            <div class="col-4" for="size">Size Description:</label></p>
+              
+              <textarea style="height: 300px;" id="size" name="size" disabled><%= races.size_description %></textarea>
+      
+            </div>
+          
+          </div> 
+
+          <br>
+          <h6>Alignment: </h6>
+          <p><%= races.alignment %></p>
+
+        </div>   
+        
+         <div class="card-footer text-center">
+            Omniverse Industries
+         </div>
+           
+      
+    </div> 
+
+  <% } else {%>
+    
+    <h1 class="text-center text-white mt-3">Greetings!</h1>
+  
+  <% } %>
+
+  <form action="/submit" method="POST">
+      <div class="text-center mb-4">
+        <h3 class="text-white">Choose a race and recieve their stat card!</h3>
+    
+        <select name="type" class="form">
+          <option value="dragonborn">Dragonborn</option>
+          <option value="dwarf">Dwarf</option>
+          <option value="elf">Elf</option>
+          <option value="gnome">Gnome</option>
+          <option value="half-elf">Half-elf</option>
+          <option value="halfling">Halfling</option>
+          <option value="half-orc">Half-orc</option>
+          <option value="human">Human</option>
+          <option value="tiefling">Tiefling</option>
+        </select>
+        
+        <button class="mt-3" type="submit" class="form-submit">Submit</button>
+
+      </div>
+  </form>
+
+ 
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
