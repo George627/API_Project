@@ -12,30 +12,40 @@
   <title>Api</title>
 </head>
 
+<%# Font style for body. %>
 <body class="indie-flower-regular"> 
 
+  <%# If there is a locals races, then proceed with the code. Else, greet the user. %>
   <% if(locals.races){ %>
-   
+
+    <%# Card that the information will be displayed on.%>
     <div class="card card-border mt-5 mb-3 mx-auto" style="width: 550px;">
-      
+
+      <%# Card Header %>
       <div class="card-header text-center">Stat Card</div>
-  
+
+        <%# Card Body %>
         <div class="card-body">
-          
+
+          <%# races.name uses data that comes from the index.js post method. It would display the name of the race the user selected. %>
           <h5 class="card-title text-center">Race: <%= races.name %></h5>
-        
+
+          <%# This row displays the Life Expectancy, Stats, and Size Description. %>
           <div class="row">
-        
+
+            <%# Life Expectancy, the information is displayed by using races.age %>
             <div class="col-5" for="age">Life Expectancy:</label></p>
               
             <textarea style="height: 300px;" id="age" name="age" disabled><%= races.age %></textarea>
     
             </div>
-            
+
+            <%# Stats for the race. %>
             <div class="col-2" for="stats">Stats:</label></p>
               
               <ul>
-                
+
+                <%# For Each method that prints the current stat's name, as well as points for each stat that for the race. %>
                 <% races.ability_bonuses.forEach(stat => { %>
 
                   <li><%= stat.ability_score.name %>: <%= stat.bonus %></li> 
@@ -45,30 +55,39 @@
             </ul>
               
             </div>
-          
+
+            <%# Size Description for the race. %>
             <div class="col-4" for="size">Size Description:</label></p>
               
               <textarea style="height: 300px;" id="size" name="size" disabled><%= races.size_description %></textarea>
       
             </div>
-          
+
+          <%# End of Row Div %>
           </div> 
 
           <br>
+    
+          <%# Alignment for the race. %>
           <h6>Alignment: </h6>
           <p><%= races.alignment %></p>
 
+
+        <%# End of Card Body Div. %>
         </div>   
-        
+
+         <%# Card Footer %>
          <div class="card-footer text-center">
             Omniverse Industries
          </div>
-           
-      
+
+
+    <%# End of Card Div %>  
     </div> 
 
   <% } else {%>
-    
+
+    <%# Greetings message. %>
     <h1 class="text-center text-white mt-3">Greetings!</h1>
   
   <% } %>
