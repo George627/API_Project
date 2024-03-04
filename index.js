@@ -20,6 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //A get method for the homepage.
 app.get("/",  (req, res) => {
+
+    //Renders the index.ejs file.
     res.render("index.ejs");
 });
 
@@ -30,16 +32,24 @@ app.post("/submit", async (req, res) => {
     //Try & Catch statment that tries to get data from the URL and will catch any errors along the way. 
     try {  
 
-        
+        /*The raceInfo constant is used to store the data at the URL 
+          along with the type that the user specified.*/
         const raceInfo = await axios.get(API_URL + req.body.type);
+
+        //The raceResult constant stores the raceInfo.data that has been formatted to JSON with ".data".
         const raceResult = raceInfo.data;
-        
+
+        //Renders the index.ejs file along with the raceResult. 
         res.render("index.ejs", {
           races: raceResult,
         });
 
     } catch (error) {
+
+        //An error message that will be triggered if the catch expression is called.
         console.error("Failed to make request:", error.message);
+
+        //Renders an error message.
         res.render("index.ejs", {
           error: error.message,
         });
