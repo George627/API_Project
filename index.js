@@ -1,11 +1,18 @@
+//Importing resources from Express, Axios, and Body-Parser.
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
 
+//Creating the app using from a express method.
 const app = express();
+
+//App will be ran on port 3000.
 const port = 3000;
+
+//The URL and location the API will be getting information.
 const API_URL = "https://www.dnd5eapi.co/api/races/";
- 
+
+//Links the public folder for a place for static files as well as CSS.
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
